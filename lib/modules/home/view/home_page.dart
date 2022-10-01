@@ -1,11 +1,4 @@
-import 'dart:math';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_web_core/bloc/user/user_cubit.dart';
 import 'package:flutter_web_core/exports.dart';
-import 'package:flutter_web_core/routes/app_routes.dart';
-
-import '../models/user.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -24,10 +17,20 @@ class HomePage extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              switch (state.runtimeType) {
+                case HomeDisplayUsers:
+                  return SelectionArea(child: Text((state as HomeDisplayUsers).users.toString()));
+                default:
+                  return const SelectionArea(child:  Text('No se han podido cargar los usuarios'));
+              }
+            },
+          ),
           ElevatedButton(
             onPressed: () {
               final random = Random().nextInt(10);
-              context.go('/contact/$random');
+              context.go('/home/contact/$random');
             },
             child: const Text('Contact Page'),
           ),
@@ -39,21 +42,19 @@ class HomePage extends StatelessWidget {
               //context.goNamed('aboutPage', params: {"Pedro": ""});
 
               final user = User(email: "pedro@gmail.com", password: "123456");
-              
 
               BlocProvider.of<UserCubit>(context).activateUser(user);
               //Guardar la info en la memoria
 
-
-
               //userCubit.close();
-              context.go('/about');
+              context.go('/home/about');
+              //Router.neglect(context, () => context.replace('/about'));
             },
             child: const Text('About Page'),
           ),
           const SizedBox(height: 12),
           ElevatedButton(
-            onPressed: () => context.go('/login'),
+            onPressed: () => context.go('/'),
             //onPressed: () => Router.neglect(context, () => context.replace('/login')),
             //onPressed: () => GoRouter.of(context).go('/login?query=online&limit=3'),
             child: const Text('Login Page'),

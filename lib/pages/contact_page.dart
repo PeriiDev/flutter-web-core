@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_web_core/exports.dart';
 
 class ContactPage extends StatelessWidget {
   final Map<String, String> params;

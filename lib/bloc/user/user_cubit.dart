@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_web_core/exports.dart';
-import 'package:flutter_web_core/models/user.dart';
+import 'package:flutter_web_core/global/data/models/user.dart';
 
 part 'user_state.dart';
 
