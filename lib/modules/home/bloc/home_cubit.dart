@@ -7,7 +7,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitialState());
 
   void displayAllUsers() async {
-    //TODO -> CALL TO USECASE
+    //TODO -> CALL USECASE
     final users = await UsersService.getAll();
     //TODO -> EMIT NEW STATE
     emit(HomeDisplayUsers(users: users));

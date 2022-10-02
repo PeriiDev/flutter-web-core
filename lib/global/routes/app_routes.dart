@@ -47,7 +47,8 @@ class AppRouter {
 
   //Redirects methods
   static FutureOr<String?> _redirectLoginPage(BuildContext context, GoRouterState state) async {
-    return LocalStorage.email.length > 3 ? '/home' : null;
+    //return LocalStorage.email.length > 3 ? '/home' : null;
+    return null;
   }
 
   static FutureOr<String?> _redirectHomePage(BuildContext context, GoRouterState state) async {

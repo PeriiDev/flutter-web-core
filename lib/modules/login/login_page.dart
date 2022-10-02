@@ -1,5 +1,6 @@
 import 'package:flutter_web_core/exports.dart';
 
+
 class LoginPage extends StatelessWidget {
   final Map<String, String> queryParams;
 
@@ -29,9 +30,14 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Sign in to project',
-                    style: TextStyle(fontSize: 50, fontFamily: 'Lato'),
+                  CustomOnHoverText(
+                    builder: ((isHovered) {
+                      final color = isHovered ? Colors.orange : Colors.white;
+                      return Text(
+                        'Sign in to project',
+                        style: TextStyle(fontSize: 50, fontFamily: 'Lato', color: color),
+                      );
+                    }),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -49,24 +55,26 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  ElevatedButton(
-                    onPressed: () {
-                      //final param = {"email": "pedro@gmail.com", "password": "123456"};
-                      //context.go('/about', extra: param);
-                      //context.goNamed('aboutPage', params: {"Pedro": ""});
-                      final user = User(email: "pedro@gmail.com", password: "123456");
-                      BlocProvider.of<UserCubit>(context).activateUser(user);
-                      LocalStorage.email = user.email;
-                      //Guardar la info en la memoria
+                  CustomOnHoverButton(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        //final param = {"email": "pedro@gmail.com", "password": "123456"};
+                        //context.go('/about', extra: param);
+                        //context.goNamed('aboutPage', params: {"Pedro": ""});
+                        final user = User(email: "pedro@gmail.com", password: "123456");
+                        BlocProvider.of<UserCubit>(context).activateUser(user);
+                        LocalStorage.email = user.email;
+                        //Guardar la info en la memoria
 
-                      BlocProvider.of<HomeCubit>(context).displayAllUsers();
+                        BlocProvider.of<HomeCubit>(context).displayAllUsers();
 
-                      //userCubit.close();
-                      //Router.neglect(context, () => context.replace('/'));
-                      Router.neglect(context, () => context.replace('/home'));
-                      //context.replace('/home');
-                    },
-                    child: const Text('Login'),
+                        //userCubit.close();
+                        //Router.neglect(context, () => context.replace('/'));
+                        Router.neglect(context, () => context.replace('/home'));
+                        //context.replace('/home');
+                      },
+                      child: const Text('Login'),
+                    ),
                   ),
                 ],
               ),

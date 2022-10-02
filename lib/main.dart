@@ -1,4 +1,5 @@
 import 'package:flutter_web_core/exports.dart';
+import 'package:flutter_web_core/global/data/data_sources/users_remote_data_source.dart';
 import 'package:go_router/src/pages/custom_transition_page.dart';
 
 //import 'package:flutter_web_plugins/url_strategy.dart';
@@ -8,6 +9,8 @@ void main() async {
   GoRouter.setUrlPathStrategy(UrlPathStrategy.path); //Remove hash(#) from URL
 
   await LocalStorage.init();
+
+  UserRemoteDataSource.getAllCarsNestJs();
 
   runApp(const MyApp());
 }

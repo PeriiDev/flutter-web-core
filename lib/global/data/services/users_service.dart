@@ -1,6 +1,6 @@
 import 'package:flutter_web_core/exports.dart';
 import 'package:flutter_web_core/global/data/dto/users_response.dart';
-import 'package:flutter_web_core/global/data/services/data_sources/users_local_data_source.dart';
+import 'package:flutter_web_core/global/data/data_sources/users_local_data_source.dart';
 
 class UsersService {
   static Future<List<User>> getAll() async {
